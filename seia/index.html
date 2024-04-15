@@ -1429,6 +1429,12 @@ alternatives --set java_sdk_openjdk /usr/lib/jvm/java-11-openjdk-11.0.18.0.10-3.
 <div class="sect2">
 <h3 id="_安装maven">2.3. 安装maven</h3>
 <div class="listingblock">
+<div class="title">查看yum仓库里面是否有maven这个包</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum search maven</code></pre>
+</div>
+</div>
+<div class="listingblock">
 <div class="title">安装软件包</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo</code></pre>
@@ -1487,9 +1493,11 @@ EOF</code></pre>
 <div class="listingblock">
 <div class="title">更新</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum update
-更新系统中的所有软件包。</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum update</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>更新系统中的所有软件包。</p>
 </div>
 <div class="listingblock">
 <div class="title">打印所有MySQL仓库列表</div>
@@ -1557,6 +1565,7 @@ echo "datadir=/data/mysql" | sudo tee -a /etc/my.cnf</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo chmod 644 /etc/my.cnf
 sudo chmod -R 755 /data/mysql
+
 设置配置文件和数据目录的权限。</code></pre>
 </div>
 </div>
@@ -1565,13 +1574,6 @@ sudo chmod -R 755 /data/mysql
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo setenforce 0  # 临时禁用 SELinux
 临时禁用 SELinux。</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">重新启动 MySQL 服务器</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">systemctl restart mysqld.service
-重新启动 MySQL 服务。</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -1601,8 +1603,7 @@ sudo chmod -R 755 /data/mysql
 <div class="listingblock">
 <div class="title">获得临时密码</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">grep 'temporary password' /var/log/mysqld.log
-%z.rrOwu#5yg</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">grep 'temporary password' /var/log/mysqld.log</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -1645,6 +1646,15 @@ echo "${SJX_MYSQL_ROOT_PASSWORD}"</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mysql</code></pre>
 </div>
+</div>
+<div class="listingblock">
+<div class="title">检查 mysql-community-server 的信息</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum info mysql-community-server</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>查看 MySQL Community Server 的信息。</p>
 </div>
 </div>
 <div class="sect2">
@@ -1700,11 +1710,16 @@ echo "${SJX_MYSQL_ROOT_PASSWORD}"</code></pre>
 <div class="listingblock">
 <div class="title">安装redis软件包</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum --disablerepo=\* --enablerepo=remi search redis</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum --disablerepo=\* --enablerepo=remi search redis
+
+yum install -y redis</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>yum install -y redis</p>
+<div class="listingblock">
+<div class="title">打印redis软件包信息</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum info redis</code></pre>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_配置redis">2.5.1. 配置redis</h4>
@@ -1746,12 +1761,6 @@ sed -i "s/# requirepass .*/requirepass ${SJX_REDIS_PASSWORD}/" /etc/redis/redis.
 <div class="title">查看服务状态</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">systemctl status redis</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">重启redis</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">systemctl restart redis</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -1853,6 +1862,12 @@ cp src/main/resources/logback.xml.sample /etc/sjx/logback.xml</code></pre>
 </div>
 </div>
 <div class="listingblock">
+<div class="title">安装crudini</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum install -y crudini</code></pre>
+</div>
+</div>
+<div class="listingblock">
 <div class="title">生成内网实践星主配置</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">crudini --set --existing /etc/sjx/application.properties "" server.address '0.0.0.0'
@@ -1874,6 +1889,12 @@ crudini --set --existing /etc/sjx/application.properties "" logging.config '/etc
 <div class="title">确认修改后的实践星主配置</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">egrep -nh '(server\..*)|(spring\.datasource\.(url|username|password))|(spring\.redis\.password)|(logging\.config)' /etc/sjx/application.properties</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">查看是否成功添加</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat  /etc/sjx/application.properties</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2142,8 +2163,7 @@ EOF</code></pre>
 <div class="listingblock">
 <div class="title">检查配置</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">nginx -t
-systemctl start nginx
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">systemctl start nginx
 systemctl status nginx
 检查 Nginx 配置，并启动 Nginx 服务，查看服务状态。</code></pre>
 </div>
@@ -2222,12 +2242,6 @@ sudo systemctl disable firewalld</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">访问内网实践星</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">http://test.sjx.com:8383</code></pre>
-</div>
-</div>
-<div class="listingblock">
 <div class="title">移除内网临时环境变量</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sed -i '/export SJX_/d' ~/.bash_profile
@@ -2238,6 +2252,24 @@ source ~/.bash_profile</code></pre>
 <div class="title">临时禁用</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">setenforce 0</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">重启</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">systemctl restart sjx
+systemctl restart nginx
+systemctl restart mysqld
+systemctl restart redis</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">查看状态</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">systemctl status sjx
+systemctl status nginx
+systemctl status mysqld
+systemctl status redis</code></pre>
 </div>
 </div>
 <div class="listingblock">
