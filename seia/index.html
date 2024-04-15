@@ -1429,19 +1429,16 @@ alternatives --set java_sdk_openjdk /usr/lib/jvm/java-11-openjdk-11.0.18.0.10-3.
 <div class="sect2">
 <h3 id="_安装maven">2.3. 安装maven</h3>
 <div class="listingblock">
-<div class="title">查看yum仓库里面是否有maven这个包</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum search maven</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">安装软件包</div>
+<div class="title">下载包</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>yum install -y maven</p>
+<div class="listingblock">
+<div class="title">安装mavem</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bah hljs" data-lang="bah">yum install -y maven</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">查看版本</div>
@@ -1624,6 +1621,12 @@ echo "${SJX_MYSQL_ROOT_PASSWORD}"</code></pre>
 </div>
 </div>
 <div class="listingblock">
+<div class="title">查看变量</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">env</code></pre>
+</div>
+</div>
+<div class="listingblock">
 <div class="title">无密码登陆设置</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mysql_config_editor set --login-path=client --host=localhost --user=root --password</code></pre>
@@ -1672,12 +1675,6 @@ echo "${SJX_MYSQL_ROOT_PASSWORD}"</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">查看remi的版本</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum info remi-release</code></pre>
-</div>
-</div>
-<div class="listingblock">
 <div class="title">更新</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum update</code></pre>
@@ -1696,23 +1693,17 @@ echo "${SJX_MYSQL_ROOT_PASSWORD}"</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">打印redis软件包信息</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum info redis</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">查看redis可用的包</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum search redis</code></pre>
-</div>
-</div>
-<div class="listingblock">
 <div class="title">安装redis软件包</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum --disablerepo=\* --enablerepo=remi search redis
 
 yum install -y redis</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">查看remi的版本</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum info remi-release</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -1949,12 +1940,6 @@ EOF</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">重启sjx</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">systemctl restart sjx</code></pre>
-</div>
-</div>
-<div class="listingblock">
 <div class="title">查看状态</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">systemctl status sjx</code></pre>
@@ -1973,7 +1958,7 @@ EOF</code></pre>
 <div class="title">yum search 包的名字</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum search nginx
-搜索 Nginx 软件包。</code></pre>
+#  搜索 Nginx 软件包。</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -1994,7 +1979,7 @@ EOF</code></pre>
 <div class="title">安装 Nginx</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum install -y nginx-1.24.0
-安装 Nginx，并检查版本。</code></pre>
+#  安装 Nginx，并检查版本。</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2150,7 +2135,7 @@ EOF</code></pre>
 <div class="title">测试 Nginx 配置</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">nginx -t &amp;&amp; (test -s /var/run/nginx.pid || rm -f /var/run/nginx.pid)
-测试 Nginx 配置是否正确。</code></pre>
+#  测试 Nginx 配置是否正确。</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2166,13 +2151,6 @@ EOF</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">systemctl start nginx
 systemctl status nginx
 检查 Nginx 配置，并启动 Nginx 服务，查看服务状态。</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">重载配置</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">systemctl reload nginx      #  重新加载配置
-systemctl restart nginx</code></pre>
 </div>
 </div>
 </div>
@@ -2201,7 +2179,7 @@ EOF</code></pre>
 <div class="listingblock">
 <div class="title">检测语法是否正确</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">nginx -t &amp;&amp; nginx -s reload</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">nginx -t</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2220,12 +2198,6 @@ EOF</code></pre>
 <div class="title">重启实践星服务</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">systemctl restart sjx</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">增加到本地hosts文件当中</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">echo "192.168.2.122 test.sjx.com" | sudo tee -a /etc/hosts</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2249,12 +2221,6 @@ source ~/.bash_profile</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">临时禁用</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">setenforce 0</code></pre>
-</div>
-</div>
-<div class="listingblock">
 <div class="title">重启</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">systemctl restart sjx
@@ -2270,6 +2236,12 @@ systemctl restart redis</code></pre>
 systemctl status nginx
 systemctl status mysqld
 systemctl status redis</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">增加本地hosts文件当中</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">echo "192.168.2.122 test.sjx.com" | sudo tee -a /etc/hosts</code></pre>
 </div>
 </div>
 <div class="listingblock">
