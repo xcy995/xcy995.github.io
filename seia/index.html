@@ -772,7 +772,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_实践星">2. 实践星</a>
 <ul class="sectlevel2">
 <li><a href="#_安装git">2.1. 安装Git</a></li>
-<li><a href="#_安装java_11">2.2. 安装Java 11</a></li>
+<li><a href="#_安装java_17">2.2. 安装Java 17</a></li>
 <li><a href="#_安装maven">2.3. 安装maven</a></li>
 <li><a href="#_安装_mysql">2.4. 安装 MySQL</a></li>
 <li><a href="#_安装redis">2.5. 安装redis</a>
@@ -1363,7 +1363,7 @@ systemctl reload php-fpm</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_安装java_11">2.2. 安装Java 11</h3>
+<h3 id="_安装java_17">2.2. 安装Java 17</h3>
 <div class="listingblock">
 <div class="title">更新包</div>
 <div class="content">
@@ -1376,11 +1376,11 @@ systemctl reload php-fpm</code></pre>
 <div class="listingblock">
 <div class="title">安装</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum install -y java-11-openjdk java-11-openjdk-devel java-11-openjdk-headless</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum install -y java-17-openjdk java-17-openjdk-devel java-17-openjdk-headless</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>查找 Java 11 OpenJDK 的安装包。</p>
+<p>查找 Java 17 OpenJDK 的安装包。</p>
 </div>
 <div class="listingblock">
 <div class="title">查看版本</div>
@@ -1391,12 +1391,12 @@ systemctl reload php-fpm</code></pre>
 <div class="listingblock">
 <div class="title">配置 Java 运行环境</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">echo 'export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.18.0.10-3.el9.x86_64' &gt;&gt; ~/.bashrc
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">echo 'export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-17.0.18.0.10-3.el9.x86_64' &gt;&gt; ~/.bashrc
 echo 'export PATH=$JAVA_HOME/bin:$PATH' &gt;&gt; ~/.bashrc</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>将 Java 11 的安装路径添加到环境变量中。</p>
+<p>将 Java 17 的安装路径添加到环境变量中。</p>
 </div>
 <div class="listingblock">
 <div class="title">使配置生效</div>
@@ -1417,12 +1417,12 @@ echo 'export PATH=$JAVA_HOME/bin:$PATH' &gt;&gt; ~/.bashrc</code></pre>
 <p>检查 Java 版本以确认配置已生效。</p>
 </div>
 <div class="listingblock">
-<div class="title">设置java11为默认版本</div>
+<div class="title">设置java17为默认版本</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">alternatives --set java /usr/lib/jvm/java-11-openjdk-11.0.18.0.10-3.el9.x86_64/bin/java
-alternatives --set javac /usr/lib/jvm/java-11-openjdk-11.0.18.0.10-3.el9.x86_64/bin/javac
-alternatives --set jre_openjdk /usr/lib/jvm/java-11-openjdk-11.0.18.0.10-3.el9.x86_64
-alternatives --set java_sdk_openjdk /usr/lib/jvm/java-11-openjdk-11.0.18.0.10-3.el9.x86_64</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">alternatives --set java /usr/lib/jvm/java-17-openjdk-17.0.18.0.10-3.el9.x86_64/bin/java
+alternatives --set javac /usr/lib/jvm/java-17-openjdk-17.0.18.0.10-3.el9.x86_64/bin/javac
+alternatives --set jre_openjdk /usr/lib/jvm/java-17-openjdk-17.0.18.0.10-3.el9.x86_64
+alternatives --set java_sdk_openjdk /usr/lib/jvm/java-17-openjdk-17.0.18.0.10-3.el9.x86_64</code></pre>
 </div>
 </div>
 </div>
@@ -1431,7 +1431,8 @@ alternatives --set java_sdk_openjdk /usr/lib/jvm/java-11-openjdk-11.0.18.0.10-3.
 <div class="listingblock">
 <div class="title">下载包</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">wget https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz -P
+ -O /etc/yum.repos.d/epel-apache-maven.repo</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -1477,14 +1478,13 @@ alternatives --set java_sdk_openjdk /usr/lib/jvm/java-11-openjdk-11.0.18.0.10-3.
 <div class="listingblock">
 <div class="title">添加官方源</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/mysql-community.repo
-[mysql80-community]
-name=MySQL 8.0 Community Server
-baseurl=https://repo.mysql.com/yum/mysql-8.0-community/el/8/\$basearch/
-enabled=1
-gpgcheck=1
-gpgkey=http://repo.mysql.com/RPM-GPG-KEY-mysql-2023
-EOF</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo yum install -y https://dev.mysql.com/get/mysql80-community-release-el9-5.noarch.rpm</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">倒入mysql仓库公钥</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-mysql*</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -1492,9 +1492,6 @@ EOF</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum update</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>更新系统中的所有软件包。</p>
 </div>
 <div class="listingblock">
 <div class="title">打印所有MySQL仓库列表</div>
@@ -1509,7 +1506,7 @@ EOF</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">打印mysql8.0仓库的软件包列表</div>
+<div class="title">打印mysql8.0仓库的软件包列表clea</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum repo-pkgs mysql80-community list</code></pre>
 </div>
@@ -1560,11 +1557,12 @@ echo "datadir=/data/mysql" | sudo tee -a /etc/my.cnf</code></pre>
 <div class="listingblock">
 <div class="title">设置文件目录权限</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo chmod 644 /etc/my.cnf
-sudo chmod -R 755 /data/mysql
-
-设置配置文件和数据目录的权限。</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">chmod 644 /etc/my.cnf
+chmod -R 755 /data/mysql</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>设置配置文件和数据目录的权限。</p>
 </div>
 <div class="listingblock">
 <div class="title">检查 SELinux 设置</div>
@@ -1598,16 +1596,10 @@ sudo chmod -R 755 /data/mysql
 </div>
 </div>
 <div class="listingblock">
-<div class="title">获得临时密码</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">grep 'temporary password' /var/log/mysqld.log</code></pre>
-</div>
-</div>
-<div class="listingblock">
 <div class="title">修改密码</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">MYSQL_TMP_ROOT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log | tail -n 1 | awk '{print $NF}')
-export SJX_MYSQL_ROOT_PASSWORD='Yangyunfei520@'
+export SJX_MYSQL_ROOT_PASSWORD=$(openssl rand -base64 12)_$(openssl rand -base64 12)
 sed -i '/export SJX_/d' ~/.bash_profile &amp;&amp; env | grep SJX_ | awk '{print "export "$1}' &gt;&gt; ~/.bash_profile
 echo -e "  MySQL用户名：root\nMySQL临时密码：${MYSQL_TMP_ROOT_PASSWORD}\n  MySQL新密码：${SJX_MYSQL_ROOT_PASSWORD}"
 mysqladmin -uroot -p"${MYSQL_TMP_ROOT_PASSWORD}" password ${SJX_MYSQL_ROOT_PASSWORD}</code></pre>
@@ -1627,9 +1619,18 @@ echo "${SJX_MYSQL_ROOT_PASSWORD}"</code></pre>
 </div>
 </div>
 <div class="listingblock">
+<div class="title">安装应用</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum install -y expect</code></pre>
+</div>
+</div>
+<div class="listingblock">
 <div class="title">无密码登陆设置</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mysql_config_editor set --login-path=client --host=localhost --user=root --password</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">unbuffer expect -c "
+spawn mysql_config_editor set --skip-warn --login-path=client --host=localhost --user=root --password
+expect -nocase \"Enter password:\" {send \"${SJX_MYSQL_ROOT_PASSWORD}\n\"; interact}
+"</code></pre>
 </div>
 </div>
 <div class="listingblock">
