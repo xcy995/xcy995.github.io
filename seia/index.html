@@ -772,7 +772,7 @@ p { margin-bottom: 1.25rem; }
 <li><a href="#_实践星">2. 实践星</a>
 <ul class="sectlevel2">
 <li><a href="#_安装git">2.1. 安装Git</a></li>
-<li><a href="#_安装java_17">2.2. 安装Java 17</a></li>
+<li><a href="#_安装java_11">2.2. 安装Java 11</a></li>
 <li><a href="#_安装maven">2.3. 安装maven</a></li>
 <li><a href="#_安装_mysql">2.4. 安装 MySQL</a></li>
 <li><a href="#_安装redis">2.5. 安装redis</a>
@@ -1363,7 +1363,7 @@ systemctl reload php-fpm</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_安装java_17">2.2. 安装Java 17</h3>
+<h3 id="_安装java_11">2.2. 安装Java 11</h3>
 <div class="listingblock">
 <div class="title">更新包</div>
 <div class="content">
@@ -1376,11 +1376,11 @@ systemctl reload php-fpm</code></pre>
 <div class="listingblock">
 <div class="title">安装</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum install -y java-17-openjdk java-17-openjdk-devel java-17-openjdk-headless</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum install -y java-11-openjdk java-11-openjdk-devel java-11-openjdk-headless</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>查找 Java 17 OpenJDK 的安装包。</p>
+<p>查找 Java 11 OpenJDK 的安装包。</p>
 </div>
 <div class="listingblock">
 <div class="title">查看版本</div>
@@ -1391,12 +1391,12 @@ systemctl reload php-fpm</code></pre>
 <div class="listingblock">
 <div class="title">配置 Java 运行环境</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">echo 'export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-17.0.18.0.10-3.el9.x86_64' &gt;&gt; ~/.bashrc
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">echo 'export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.18.0.10-3.el9.x86_64' &gt;&gt; ~/.bashrc
 echo 'export PATH=$JAVA_HOME/bin:$PATH' &gt;&gt; ~/.bashrc</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>将 Java 17 的安装路径添加到环境变量中。</p>
+<p>将 Java 11 的安装路径添加到环境变量中。</p>
 </div>
 <div class="listingblock">
 <div class="title">使配置生效</div>
@@ -1417,12 +1417,12 @@ echo 'export PATH=$JAVA_HOME/bin:$PATH' &gt;&gt; ~/.bashrc</code></pre>
 <p>检查 Java 版本以确认配置已生效。</p>
 </div>
 <div class="listingblock">
-<div class="title">设置java17为默认版本</div>
+<div class="title">设置java11为默认版本</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">alternatives --set java /usr/lib/jvm/java-17-openjdk-17.0.18.0.10-3.el9.x86_64/bin/java
-alternatives --set javac /usr/lib/jvm/java-17-openjdk-17.0.18.0.10-3.el9.x86_64/bin/javac
-alternatives --set jre_openjdk /usr/lib/jvm/java-17-openjdk-17.0.18.0.10-3.el9.x86_64
-alternatives --set java_sdk_openjdk /usr/lib/jvm/java-17-openjdk-17.0.18.0.10-3.el9.x86_64</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">alternatives --set java /usr/lib/jvm/java-11-openjdk-11.0.18.0.10-3.el9.x86_64/bin/java
+alternatives --set javac /usr/lib/jvm/java-11-openjdk-11.0.18.0.10-3.el9.x86_64/bin/javac
+alternatives --set jre_openjdk /usr/lib/jvm/java-11-openjdk-11.0.18.0.10-3.el9.x86_64
+alternatives --set java_sdk_openjdk /usr/lib/jvm/java-11-openjdk-11.0.18.0.10-3.el9.x86_64</code></pre>
 </div>
 </div>
 </div>
